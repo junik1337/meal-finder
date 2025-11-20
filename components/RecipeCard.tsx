@@ -10,13 +10,20 @@ import {
 import { Meal } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { countryToFlag } from "@/constants";
+import RecipeDialog from "./RecipeDialog";
 
 const RecipeCard = ({ meal }: { meal: Meal }) => {
   return (
     <Card className="w-sm bg-yellow relative justify-between">
       <CardHeader className="flex flex-col">
-        <CardTitle className="text-2xl font-bold">{meal.strMeal}</CardTitle>
+        <CardTitle className="text-2xl font-bold">
+          <span className="bg-white px-1 rounded-full">
+            {countryToFlag(meal.strArea)}
+          </span>
+          &nbsp;
+          {meal.strMeal}
+        </CardTitle>
         <CardDescription className="self-center flex justify-center bg-green rounded-sm p-3">
           <Image
             src={meal.strMealThumb}
@@ -26,7 +33,7 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
             alt={`${meal.strMeal}'s photo`}
           />
         </CardDescription>
-        <CardAction className="bg-white absolute rounded-sm -right-2 font-semibold px-1 py-0.5 text-sm">
+        <CardAction className="bg-white absolute rounded-sm -right-2 font-bold px-1 py-0.5 text-sm">
           {meal.strCategory}
         </CardAction>
       </CardHeader>
@@ -51,10 +58,8 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
           </Link>
         )}
       </CardContent>
-      <CardFooter>
-        <Button className="bg-white cursor-pointer text-black font-semibold hover:text-white">
-          Show More
-        </Button>
+      <CardFooter className="debug">
+        <RecipeDialog />
       </CardFooter>
     </Card>
   );
