@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dialog";
 import { countryToFlag, parseInstructions } from "@/constants";
 import { Meal } from "@/types";
-import { Youtube } from "lucide-react";
+import { Play } from "lucide-react";
 import Image from "next/image";
 
 const RecipeDialog = ({ meal }: { meal: Meal }) => {
@@ -95,7 +95,7 @@ const RecipeDialog = ({ meal }: { meal: Meal }) => {
             target="_blank"
             className="bg-red-500 text-white px-1 py-0.5 rounded-xs hover:underline inline-flex gap-2 items-center font-medium self-end"
           >
-            <Youtube />
+            <Play className="fill-white size-5" />
             <span>Watch on YouTube</span>
           </a>
         )}
