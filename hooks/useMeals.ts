@@ -5,5 +5,6 @@ export function useMeals(query: string) {
   return useQuery({
     queryKey: ["meals", query],
     queryFn: () => fetchMeals(query),
+    retry: false,
   });
 }

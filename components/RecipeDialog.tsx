@@ -35,7 +35,7 @@ const RecipeDialog = ({ meal }: { meal: Meal }) => {
             &nbsp;
             {meal.strMeal}
           </span>
-          <span className="text-sm sm:text-base bg-green text-white font-bold px-1 py-0.5 rounded-sm">
+          <span className="text-sm sm:text-base font-sans bg-green text-white font-bold px-1 py-0.5 rounded-sm">
             {meal.strCategory}
           </span>
         </DialogTitle>

@@ -4,11 +4,11 @@ import RecipeCard from "@/components/RecipeCard";
 import { Input } from "@/components/ui/input";
 import { useMeals } from "@/hooks/useMeals";
 import Loader from "./Loader";
-import Error from "next/error";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchStore } from "@/store/searchStore";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Recipes = () => {
   const [search, setSearch] = useState<string>("");
@@ -17,7 +17,7 @@ const Recipes = () => {
   const addSearch = useSearchStore((state) => state.addSearch);
   const history = useSearchStore((state) => state.history);
 
-  const { data, isLoading, isError } = useMeals(submittedQuery);
+  const { data, isLoading, isError, refetch } = useMeals(submittedQuery);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +35,12 @@ const Recipes = () => {
     setSubmittedQuery("");
     setSearch("");
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Failed to fetch meals.");
+    }
+  }, [isError]);
 
   return (
     <section
@@ -90,10 +96,17 @@ const Recipes = () => {
       </div>
 
       {isError && (
-        <Error
-          statusCode={500}
-          title="Failed to fetch meals"
-        />
+        <div className="flex flex-col items-center justify-center gap-3 mt-10">
+          <p className="text-red-500 font-semibold">Failed to fetch meals</p>
+
+          <Button
+            size="lg"
+            onClick={() => refetch()}
+            className="text-lg"
+          >
+            Retry
+          </Button>
+        </div>
       )}
 
       <div className="w-full flex flex-row gap-10 flex-wrap justify-center px-2.5 min-h-[50vh]">

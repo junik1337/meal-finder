@@ -24,7 +24,7 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card className="w-sm bg-yellow relative justify-between cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out">
+        <Card className="w-[392px] bg-yellow relative justify-between cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out">
           <Button
             onClick={(e) => {
               e.stopPropagation();
@@ -52,7 +52,7 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
                 alt={`${meal.strMeal}'s photo`}
               />
             </CardDescription>
-            <CardAction className="bg-white absolute top-2 rounded-sm -right-2 font-bold px-1 py-0.5 text-sm">
+            <CardAction className="bg-white font-sans absolute top-2 rounded-sm -right-2 font-bold px-1 py-0.5 text-sm">
               {meal.strCategory}
             </CardAction>
           </CardHeader>
@@ -61,7 +61,7 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
               const ingredient = meal[`strIngredient${i}` as keyof Meal];
               return ingredient ? (
                 <p
-                  className="bg-green font-semibold text-white p-1.5 text-sm rounded-sm"
+                  className="bg-green font-medium text-white p-1.5 font-sans text-sm rounded-sm"
                   key={i}
                 >
                   {ingredient}
