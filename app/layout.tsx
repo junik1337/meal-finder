@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Ubuntu, Nunito_Sans } from "next/font/google";
 import QueryProvider from "@/providers/query-provider";
 import { Toaster } from "react-hot-toast";
+import SplashScreen from "@/components/Splash";
 
 import "./globals.css";
 
@@ -32,8 +33,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${nunitoSans.variable} font-mono antialiased bg-green text-white`}
       >
-        <Toaster containerClassName="font-sans" />
-        <QueryProvider>{children}</QueryProvider>
+        <SplashScreen>
+          <Toaster containerClassName="font-sans" />
+          <QueryProvider>{children}</QueryProvider>
+        </SplashScreen>
       </body>
     </html>
   );
