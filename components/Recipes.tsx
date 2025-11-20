@@ -15,6 +15,7 @@ const Recipes = () => {
   const [submittedQuery, setSubmittedQuery] = useState<string>("");
 
   const addSearch = useSearchStore((state) => state.addSearch);
+  const history = useSearchStore((state) => state.history);
 
   const { data, isLoading, isError } = useMeals(submittedQuery);
 
@@ -40,32 +41,53 @@ const Recipes = () => {
       id="Recipes"
       className="flex flex-col items-center justify-center mt-10 space-y-20"
     >
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center flex-wrap gap-6 justify-center max-w-4xl w-full"
-      >
-        <div className="inline-flex gap-2 max-w-md w-full">
-          <Input
-            placeholder="Search meals..."
-            className="max-w-md bg-white text-black"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <Button
-            type="submit"
-            role="search"
-          >
-            <Search />
-          </Button>
-        </div>
-
-        <button
-          onClick={handleClear}
-          className="hover:underline cursor-pointer"
+      <div className="flex flex-col justify-center items-center gap-6 w-full">
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center flex-wrap gap-6 justify-center max-w-4xl w-full px-2"
         >
-          Clear search
-        </button>
-      </form>
+          <div className="inline-flex gap-2 max-w-md w-full">
+            <Input
+              placeholder="Search meals..."
+              className="max-w-md bg-white text-black"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Button
+              type="submit"
+              role="search"
+            >
+              <Search />
+            </Button>
+          </div>
+
+          <button
+            onClick={handleClear}
+            className="hover:underline cursor-pointer"
+          >
+            Clear search
+          </button>
+        </form>
+
+        {history.length > 0 && (
+          <div className="flex gap-2 flex-wrap justify-center text-sm items-center">
+            <span>Last Searches:</span>
+            {history.map((item, i) => (
+              <Button
+                size="sm"
+                key={i}
+                onClick={() => {
+                  setSearch(item);
+                  setSubmittedQuery(item);
+                }}
+                className="bg-primary  text-white px-2 py-0.5 rounded"
+              >
+                {item}
+              </Button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {isError && (
         <Error
@@ -74,7 +96,7 @@ const Recipes = () => {
         />
       )}
 
-      <div className="w-full flex flex-row gap-10 flex-wrap justify-center px-2 min-h-[50vh]">
+      <div className="w-full flex flex-row gap-10 flex-wrap justify-center px-2.5 min-h-[50vh]">
         {isLoading ? (
           <Loader />
         ) : data?.meals ? (

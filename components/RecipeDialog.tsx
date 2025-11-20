@@ -1,10 +1,8 @@
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { countryToFlag, parseInstructions } from "@/constants";
 import { Meal } from "@/types";
@@ -27,103 +25,95 @@ const RecipeDialog = ({ meal }: { meal: Meal }) => {
   const steps = parseInstructions(meal.strInstructions);
 
   return (
-    <Dialog>
-      <DialogTrigger className="cursor-pointer group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-sm bg-green px-4 font-medium text-neutral-200 transition hover:scale-110">
-        <span>Show More</span>
-        <div className="absolute inset-0 flex h-full w-full justify-center transform-[skew(-12deg)_translateX(-100%)] group-hover:duration-1000 group-hover:transform-[skew(-12deg)_translateX(100%)]">
-          <div className="relative h-full w-8 bg-white/60" />
-        </div>
-      </DialogTrigger>
-      <DialogContent className="text-black flex flex-col max-h-[92vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="inline-flex justify-between items-center my-4">
-            <span className="text-4xl font-bold">
-              <span className="bg-yellow px-1 rounded-full">
-                {countryToFlag(meal.strArea)}
-              </span>
-              &nbsp;
-              {meal.strMeal}
+    <DialogContent className="text-black flex flex-col max-h-[92vh] overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle className="inline-flex justify-between items-center my-4">
+          <span className="text-2xl sm:text-4xl font-bold">
+            <span className="bg-yellow px-1 rounded-full">
+              {countryToFlag(meal.strArea)}
             </span>
-            <span className="text-base bg-green text-white font-bold px-1 py-0.5 rounded-sm">
-              {meal.strCategory}
-            </span>
-          </DialogTitle>
-          <DialogDescription className="mx-auto">
-            <Image
-              src={meal.strMealThumb}
-              width={700}
-              height={700}
-              className="max-w-sm w-full rounded-sm"
-              alt={`${meal.strMeal}'s photo`}
-            />
-          </DialogDescription>
+            &nbsp;
+            {meal.strMeal}
+          </span>
+          <span className="text-sm sm:text-base bg-green text-white font-bold px-1 py-0.5 rounded-sm">
+            {meal.strCategory}
+          </span>
+        </DialogTitle>
+        <DialogDescription className="mx-auto">
+          <Image
+            src={meal.strMealThumb}
+            width={700}
+            height={700}
+            className="max-w-sm w-full rounded-sm"
+            alt={`${meal.strMeal}'s photo`}
+          />
+        </DialogDescription>
 
-          <div className="flex flex-col gap-2 mb-4">
-            <h3 className="bg-yellow text-lg font-medium font-sans px-1 rounded-xs">
-              Ingredients
-            </h3>
-            <ul className="space-y-1">
-              {ingredients.map((item, i) => (
-                <li
-                  key={i}
-                  className="text-sm font-sans text-black/60"
-                >
-                  • <span className="font-semibold">{item.ingredient}</span>
-                  {item.measure ? (
-                    <span className="font-base font-sans">
-                      &nbsp;— {item.measure}
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="bg-yellow text-lg font-medium font-sans px-1 rounded-xs">
-              Instructions
-            </h3>
-            <ol className="space-y-2 list-disc list-inside">
-              {steps.map((step, i) => (
-                <li
-                  key={i}
-                  className="text-sm leading-relaxed text-black/80"
-                >
-                  {step}
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {meal.strYoutube && (
-            <a
-              href={meal.strYoutube}
-              target="_blank"
-              className="bg-red-500 text-white px-1 py-0.5 rounded-xs hover:underline inline-flex gap-2 items-center font-medium self-end"
-            >
-              <Youtube />
-              <span>Watch on YouTube</span>
-            </a>
-          )}
-
-          {meal.strSource && (
-            <div className="pt-4 border-t">
-              <h3 className="text-lg font-semibold mb-1 font-sans">Source</h3>
-              <a
-                href={meal.strSource}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline break-all"
+        <div className="flex flex-col gap-2 mb-4">
+          <h3 className="bg-yellow text-lg font-medium font-sans px-1 rounded-xs">
+            Ingredients
+          </h3>
+          <ul className="space-y-1">
+            {ingredients.map((item, i) => (
+              <li
+                key={i}
+                className="text-sm font-sans text-black/60"
               >
-                {meal.strSource}
-              </a>
-            </div>
-          )}
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+                • <span className="font-semibold">{item.ingredient}</span>
+                {item.measure ? (
+                  <span className="font-base font-sans">
+                    &nbsp;— {item.measure}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3 className="bg-yellow text-lg font-medium font-sans px-1 rounded-xs">
+            Instructions
+          </h3>
+          <ol className="space-y-2 list-disc list-inside">
+            {steps.map((step, i) => (
+              <li
+                key={i}
+                className="text-sm leading-relaxed text-black/80"
+              >
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {meal.strYoutube && (
+          <a
+            href={meal.strYoutube}
+            target="_blank"
+            className="bg-red-500 text-white px-1 py-0.5 rounded-xs hover:underline inline-flex gap-2 items-center font-medium self-end"
+          >
+            <Youtube />
+            <span>Watch on YouTube</span>
+          </a>
+        )}
+
+        {meal.strSource && (
+          <div className="pt-4 border-t">
+            <h3 className="text-lg font-semibold mb-1 font-sans">Source</h3>
+            <a
+              href={meal.strSource}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline break-all"
+            >
+              {meal.strSource}
+            </a>
+          </div>
+        )}
+      </DialogHeader>
+    </DialogContent>
   );
 };
 
