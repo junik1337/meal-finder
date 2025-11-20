@@ -30,6 +30,7 @@ const Hero = () => {
         src={HeroImage}
         width={800}
         height={600}
+		priority
         className="object-cover w-full max-w-2xl"
         alt="Hero's image"
       />

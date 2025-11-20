@@ -3,12 +3,13 @@
 import RecipeCard from "@/components/RecipeCard";
 import { Input } from "@/components/ui/input";
 import { useMeals } from "@/hooks/useMeals";
-import Loader from "./Loader";
 import { useEffect, useState } from "react";
 import { useSearchStore } from "@/store/searchStore";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import RecipeSkeleton from "./RecipeSkeleton";
 
 const Recipes = () => {
   const [search, setSearch] = useState<string>("");
@@ -111,14 +112,29 @@ const Recipes = () => {
 
       <div className="w-full flex flex-row gap-10 flex-wrap justify-center px-2.5 min-h-[50vh]">
         {isLoading ? (
-          <Loader />
+          <RecipeSkeleton />
         ) : data?.meals ? (
-          data.meals.map((meal, idx) => (
-            <RecipeCard
-              meal={meal}
-              key={idx}
-            />
-          ))
+          <motion.div
+            className="w-full flex flex-row gap-10 flex-wrap justify-center"
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.18,
+                },
+              },
+            }}
+          >
+            {data.meals.map((meal, idx) => (
+              <RecipeCard
+                meal={meal}
+                key={idx}
+              />
+            ))}
+          </motion.div>
         ) : (
           submittedQuery && <p className="text-gray-400">No meals found.</p>
         )}

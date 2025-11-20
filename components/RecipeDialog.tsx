@@ -45,6 +45,7 @@ const RecipeDialog = ({ meal }: { meal: Meal }) => {
             width={700}
             height={700}
             className="max-w-sm w-full rounded-sm"
+            loading="eager"
             alt={`${meal.strMeal}'s photo`}
           />
         </DialogDescription>
