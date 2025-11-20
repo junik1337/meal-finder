@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: "Meal Finder",
   description:
     "Discover and explore a variety of delicious meal options tailored to your dietary preferences and cravings.",
+  icons: {
+    icon: "/images/hero.png",
+  },
 };
 
 export default function RootLayout({
