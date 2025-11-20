@@ -42,3 +42,23 @@ function getCountryCode(area: string): string | null {
 
   return map[area] || null;
 }
+
+export function parseInstructions(raw: string): string[] {
+  if (!raw) return [];
+
+  // Split it like: "STEP 1", numbered lines, or just newlines
+  const stepRegex = /(?:STEP\s*\d+[:\s]*|^\d+[\.\)]\s*)/gim;
+
+  let steps = raw.split(stepRegex).filter((s) => s.trim() !== "");
+
+  if (steps.length <= 1) {
+    steps = raw
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l !== "");
+  }
+
+  return steps
+    .map((step) => step.replace(/^[\d\.\)\s]+/, "").trim())
+    .filter((step) => step.length > 0);
+}

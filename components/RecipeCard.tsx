@@ -58,8 +58,8 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
           </Link>
         )}
       </CardContent>
-      <CardFooter className="debug">
-        <RecipeDialog />
+      <CardFooter>
+        <RecipeDialog meal={meal} />
       </CardFooter>
     </Card>
   );

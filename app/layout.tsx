@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${nunitoSans.variable} font-mono antialiased bg-green max-w-7xl mx-auto text-white`}
+        className={`${geistSans.variable} ${nunitoSans.variable} font-mono antialiased bg-green text-white`}
       >
         <QueryProvider>{children}</QueryProvider>
       </body>

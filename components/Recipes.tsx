@@ -47,7 +47,7 @@ const Recipes = () => {
         <div className="inline-flex gap-2 max-w-md w-full">
           <Input
             placeholder="Search meals..."
-            className="max-w-md"
+            className="max-w-md bg-white text-black"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -74,7 +74,7 @@ const Recipes = () => {
         />
       )}
 
-      <div className="w-full flex flex-row gap-10 flex-wrap justify-center px-2">
+      <div className="w-full flex flex-row gap-10 flex-wrap justify-center px-2 min-h-[50vh]">
         {isLoading ? (
           <Loader />
         ) : data?.meals ? (
