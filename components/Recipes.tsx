@@ -49,8 +49,11 @@ const Recipes = () => {
       className="flex flex-col items-center justify-center mt-10 space-y-20"
     >
       <div className="flex flex-col justify-center items-center gap-6 w-full">
-        <form
+        <motion.form
           onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex items-center flex-wrap gap-6 justify-center max-w-4xl w-full px-2"
         >
           <div className="inline-flex gap-2 max-w-md w-full">
@@ -60,12 +63,14 @@ const Recipes = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Button
-              type="submit"
-              role="search"
-            >
-              <Search />
-            </Button>
+            <div>
+              <Button
+                type="submit"
+                role="search"
+              >
+                <Search />
+              </Button>
+            </div>
           </div>
 
           <button
@@ -74,25 +79,37 @@ const Recipes = () => {
           >
             Clear search
           </button>
-        </form>
+        </motion.form>
 
         {history.length > 0 && (
-          <div className="flex gap-2 flex-wrap justify-center text-sm items-center">
-            <span>Last Searches:</span>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex gap-2 flex-wrap justify-center text-sm items-center"
+          >
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+            >
+              Last Searches:
+            </motion.span>
             {history.map((item, i) => (
-              <Button
-                size="sm"
-                key={i}
-                onClick={() => {
-                  setSearch(item);
-                  setSubmittedQuery(item);
-                }}
-                className="bg-primary  text-white px-2 py-0.5 rounded"
-              >
-                {item}
-              </Button>
+              <div key={i}>
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    setSearch(item);
+                    setSubmittedQuery(item);
+                  }}
+                  className="bg-primary  text-white px-2 py-0.5 rounded"
+                >
+                  {item}
+                </Button>
+              </div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
 
