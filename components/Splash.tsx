@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const SplashScreen = ({ children }: { children: React.ReactNode }) => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState<boolean>(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,7 +16,7 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
 
   if (showSplash) {
     return (
-      <div className="fixed inset-0 bg-yellow-100 flex flex-col items-center justify-center z-9999">
+      <div className="fixed inset-0 bg-green flex flex-col items-center justify-center z-9999">
         <motion.div
           animate={{ y: [0, -15, 0], rotate: [0, 3, -3, 0] }}
           transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
@@ -27,7 +27,7 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
 
         <motion.div
           className="text-3xl absolute mt-[-70px] text-gray-400"
-          animate={{ opacity: [0, 1, 0], y: [0, -40, -60] }}
+          animate={{ opacity: [0, 1, 0], y: [0, -30, -50] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
         >
           ♨️
@@ -36,7 +36,7 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
         <motion.div
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 1.8, repeat: Infinity }}
-          className="text-xl font-bold text-yellow-700 mt-10"
+          className="text-xl font-bold text-yellow mt-6"
         >
           Cooking up delicious recipes…
         </motion.div>
