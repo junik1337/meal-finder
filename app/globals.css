@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-green: #02472e;
+  --color-yellow: #f3ca52;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -112,9 +117,43 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.debug {
+  border: 1px solid red !important;
+  & > * {
+    border: 1px solid green !important;
+    & > * {
+      border: 1px solid blue !important;
+      & > * {
+        border: 1px solid purple !important;
+        & > * {
+          border: 1px solid orange !important;
+          & > * {
+            border: 1px solid brown !important;
+            & > * {
+              border: 1px solid yellow !important;
+              & > * {
+                border: 1px solid pink !important;
+                & > * {
+                  border: 1px solid grey !important;
+                  & > * {
+                    border: 1px solid black !important;
+                    & > * {
+                      border: 1px solid white !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
