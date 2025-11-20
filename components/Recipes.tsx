@@ -123,7 +123,8 @@ const Recipes = () => {
               show: {
                 opacity: 1,
                 transition: {
-                  staggerChildren: 0.18,
+                  staggerChildren: 0.08,
+                  delayChildren: 0.1,
                 },
               },
             }}
@@ -136,7 +137,16 @@ const Recipes = () => {
             ))}
           </motion.div>
         ) : (
-          submittedQuery && <p className="text-gray-400">No meals found.</p>
+          submittedQuery && (
+            <motion.p
+              className="text-gray-400"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              No meals found.
+            </motion.p>
+          )
         )}
       </div>
     </section>

@@ -27,10 +27,19 @@ const RecipeCard = ({ meal }: { meal: Meal }) => {
       <DialogTrigger asChild>
         <motion.div
           variants={{
-            hidden: { opacity: 0, scale: 0.8, y: 20 },
+            hidden: { opacity: 0, scale: 0.9, y: 30 },
             show: { opacity: 1, scale: 1, y: 0 },
           }}
-          className="w-[392px] relative justify-between cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out"
+          transition={{
+            duration: 0.5,
+            ease: [0.4, 0, 0.2, 1],
+          }}
+          whileHover={{
+            scale: 1.05,
+            transition: { duration: 0.3, ease: "easeOut" },
+          }}
+          whileTap={{ scale: 0.98 }}
+          className="w-[392px] relative justify-between cursor-pointer"
         >
           <Card className="bg-yellow h-full">
             <Button
