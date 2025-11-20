@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="flex flex-row items-center justify-between gap-10 py-12 flex-wrap-reverse md:flex-nowrap px-4">
+    <section className="flex flex-row items-center justify-between gap-10 py-12 flex-wrap-reverse md:flex-nowrap px-6">
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -51,7 +51,7 @@ const Hero = () => {
         initial={{ opacity: 0, x: 50, scale: 0.9 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-        className="w-full max-w-2xl"
+        className="w-full max-w-xl border-4 rounded-sm border-yellow px-1 mx-auto [box-shadow:10px_10px_#f3ca52]"
       >
         <Image
           src={HeroImage}
