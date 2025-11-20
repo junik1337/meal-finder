@@ -10,22 +10,22 @@ const Hero = () => {
   return (
     <section className="flex flex-row items-center justify-between gap-10 py-12 flex-wrap-reverse md:flex-nowrap px-4">
       <motion.div
-        className="max-w-2xl space-y-4 text-center sm:text-left mx-auto"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-2xl space-y-4 text-center sm:text-left mx-auto"
       >
         <motion.h1
-          className="text-8xl font-bold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="text-6xl md:text-8xl font-bold"
         >
           Meal Finder
         </motion.h1>
 
         <motion.p
-          className="text-lg max-w-lg"
+          className="md:text-lg max-w-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}

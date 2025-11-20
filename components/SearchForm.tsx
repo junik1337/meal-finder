@@ -24,7 +24,7 @@ const SearchForm = ({
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex items-center flex-wrap gap-6 justify-center max-w-4xl w-full px-2"
+      className="flex items-center flex-wrap gap-6 justify-center max-w-xs md:max-w-4xl w-full px-2"
     >
       <div className="inline-flex gap-2 max-w-md w-full">
         <Input
